@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <title>Szereg Harmoniczny</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+  <script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+  <script type='text/javascript' src='Scripts/Prototype.js'></script>
+  <style>
+
+    p{
+      margin-bottom: 0.1em;
+      line-height: 1.5em;
+    }
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    .maintext{
+      min-height: 1000px;
+      height: auto;
+    }
+
+    .pages-container{
+      background-color: white; 
+      height: auto;
+    }
+
+    body{
+      background-color: #e2e5e7;
+    }
+
+    .row.content {height: 450px}
+
+    .sidenav {
+      padding-top: 20px;
+      height: 100%;
+      background-color: #e2e5e7;
+    }
+    
+    .jumbotron{
+      color:#efeff5;
+      text-shadow: #113 0.3em 0.3em 0.3em;
+      letter-spacing: 3px;
+      margin-bottom: 0; 
+    }
+
+    footer {
+      padding: 15px;
+    }
+
+    h1,h2,h3,h4{
+
+    }
+
+    h2{
+      font-size: 25px;
+    }
+
+		canvas {
+			background: #fff;
+			/*border: 2px dashed #aaa;*/
+			box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); 
+			/*image-rendering: optimizeSpeed;
+			image-rendering: -moz-crisp-edges;
+			image-rendering: -webkit-optimize-contrast;
+			image-rendering: optimize-contrast;
+			image-rendering: pixelated;
+			-ms-interpolation-mode: nearest-neighbor;*/
+			display: block;
+			margin-bottom:15px;
+		}
+		.ExampleContainer{
+      background: #eee;
+			padding: 10px 10px 10px 10px;
+			max-width: 480px;
+			/*border: 3px solid #bbb;background: #f1f1f1;*/
+		}
+    .ImageDescriptionFrame{
+      background: #eee;
+      max-width: 480px;
+      overflow:auto;
+      padding: 0px 10px 10px 10px;
+    }
+    .DescribedPhoto{
+      /*box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3); */
+      margin-bottom:10px;
+      padding: 3px;
+      border: solid 1px #EFEFEF;
+      box-shadow: 1px 1px 5px #999;
+    }
+    .navbar-brand{
+      letter-spacing: 3px;
+      font-size: 20px;
+    }
+		input[type=range] {
+		  width: 200px;
+		}
+    
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: 100%;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span> 
+      </button>
+      <a class="navbar-brand" href="#top">Szereg Harmoniczny</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="" onclick="ShowPage('#Main');return false;">SZEREG</a></li>
+        <li><a href="" onclick="ShowPage('#Usage');return false;">ZASTOSOWANIE</a></li>
+        <li><a href="" onclick="ShowPage('#Sources');return false;">O STRONIE</a></li>
+        <li><a href="" onclick="ShowPage('#Main');return false;"><span class="glyphicon glyphicon-home"></span></a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id="top" class="jumbotron text-center" style="background-image: url(Assets/Baner.jpg)">
+<div class="col-xs-12" style="height:50px;"></div>
+    <h1>Szereg Harmoniczny</h1>
+    <p>Właściwości, zbieżność i zastosowanie</p> 
+  </div>
+<div class="container-fluid text-center">
+
+<!--Rows root-->
+<div class="row content">
+
+<!--<div class="col-sm-2 sidenav text-left">
+  <p><a href="#" onclick="ShowPage('#About');return false;">O Stronie</a></p>
+  <p><a href="#" onclick="ShowPage('#Main');return false;">Szereg</a></p>
+  <p><a href="#" onclick="ShowPage('#Usage');return false;">Zastosowanie</a></p>
+  <p><a href="#" onclick="ShowPage('#Sources');return false;">Źródła</a></p>
+</div>-->
+<div class="col-sm-2"></div>
+
+<div class="col-sm-8 text-left pages-container">
+<br>
+<div id="About" class="format" style="display:none">
+!O stronie!
+Strona została przygotowana na konkurs "Zobaczyć Matematykę".
+Tematem pracy jest szereg harmoniczny i jego właściwości.
+</div>
+<div id="Main" class="format" style="display:none">
+!Szereg harmoniczny!
+Szereg harmoniczny to szereg liczbowy wyrażony w postaci:
+|Assets/Formulas/1.svg|
+Jego nazwa pochodzi od długości fal kolejnych alikwotów drgającej struny, 
+które są proporcjonalne do 1, ½, ⅓, ¼, …. 
+Kolejne liczby szeregu harmonicznego to odwrotności kolejnych liczb naturalnych.
+Każdy wyraz szeregu, od drugiego włącznie, jest średnią harmoniczną dwóch wyrazów z nim sąsiadujących.
+<p>$H(n) = \frac{2 \cdot H(n-1) \cdot H(n+1)}{H(n-1)+H(n+1)}$</p>
+<p>$H(n)$ - n-ta liczba harmoninczna.</p>
+Charakterystyczną cechą szeregu harmonicznego jest to, że pozornie wydaje się on zbieżny 
+i dopiero wizualizacja graficzna lub dowód pozwala zrozumieć dlaczego nigdy 
+nie osiągnie on skończonej wartości.
+€
+<br>
+<!--$$\frac{1}{2} = \frac{2 \cdot 1 \cdot \frac{1}{3}}{1 + \frac{1}{3}}$$-->
+<div class=ExampleContainer>
+  <canvas id="KolejneLiczby" width="450" height="300"></canvas>
+  <p>Indeks początkowy: </p>
+  <input type="text" id="HarmonicStartIndex" value="0">
+  <p>Liczba elementów: </p>
+  <input type="range" id="HarmonicColumnsInput" min="1" max="20" value="10">
+  </div>
+  <p></p>
+€
+!Rozbieżność!
+Szereg harmoniczny jest rozbieżny do nieskończoności.
+
+|Assets/Formulas/2.svg|
+
+`Dowód Mikołaja z Oresme`
+Dowód rozbieżności szeregu harmonicznego odkryty przez Mikołaja z Oresme jest jednym z ważnych osiągnięć średniowiecznej matematyki:
+|Assets/Formulas/3.svg|
+Ponieważ suma liczb w każdym nawiasie wynosi ½, ciąg sum częściowych szeregu nie ma granicy skończonej.
+<div class=ImageDescriptionFrame>
+`Mikołaj z Oresme`
+<div style="float: left;">
+<img src="Assets/Oresme-Nicole.jpg" height="250" class=DescribedPhoto style="margin-right: 10px;">
+</div>
+<div >
+Mikołaj z Oresme (1320-1382) – francuski średniowieczny filozof.
+Prowadził badania między innymi w zakresie matematyki, ekonomii, fizyki i astronomii.
+Wprowadził potęgę o wykładniku ułamkowym i koncepcję dobowego ruchu Ziemi. Jest również autorem prac na temat teorii pieniądza.
+</div>
+</div>
+<div style="clear:both;">
+`Dowód D.M. Bradley'a`
+Dla dowolnej liczby _x > -1_ spełniona jest nierówność _x >= ln(x+1)_, a więc:
+|Assets/Formulas/4.svg|
+Ciąg sum częściowych można oszacować:
+|Assets/Formulas/5.svg|
+Ponieważ |Assets/Formulas/6.svg| więc również |Assets/Formulas/7.svg|
+`Dowód z ciągu Fibonacciego`
+Limit ciągu Fibonacciego wyraża się w postaci:
+|Assets/FibonacciLimit.png|
+|Assets/FibonacciProof.png|
+|Assets/FibonacciProof2.png|
+ €$\lim_{n\to\infty} \frac{f{n}-1}{f{n}+1}\neq0$, więc ostatni ciąg jest rozbieżny. Oznacza to, że ciąg harmoniczny również jest rozbieżny.€
+
+`Dowody w formie graficznej`
+Kolumny mają wysokość równą kolejnym liczbom harmonicznym.
+|Assets/Proof30.png|
+Po przekształceniu:
+|Assets/Proof30_2.png|
+Kolumny mają wysokość równą kolejnym liczbom harmonicznym.
+Jasność każdego prostokąta zmniejsza się wraz ze wzrostem jego pola powierzchni.
+|Assets/Proof30_3.png|
+Po przekształceniu:
+|Assets/Proof30_4.png|
+</div>
+!Szybkość z jaką rozbiega się ciąg harmoniczny!
+€
+<div class=ExampleContainer>
+  <canvas id="Samochod" width="450" height="300"></canvas>
+  <button id="VisualDemoReset">Reset</button>
+  <p>Naciśnięcie na bok planszy spowoduje przemieszczenie się kamery.</p>
+  <p>Za każdym razem samochód przemieszcza się o dystans równy <br>kolejnej, n-tej liczbie harmonicznej</br>
+  Odległość pokonana przez samochód to n-ta suma harmoniczna.</p>
+</div>
+€
+Ciąg harmoniczny rozbiega się bardzo powoli. Na przykład suma pierwszych 10^43^ okresów jest mniejsza od 100.
+Wynika to z tego, że sumy częściowe szeregu harmonicznego zwiększają się logarytmicznie. W szczególności
+|Assets/Formulas/8.svg|
+gdzie |Assets/Formulas/9.svg| jest stałą Eulera-Mascheroniego i |Assets/Formulas/10.svg| które zbliża się do 0, podczas gdy _k_ zbliża się do nieskończoności. 
+Leonard Euler udowodnił także, że suma odwrotności liczb pierwszych również się rozbiega
+|Assets/Formulas/11.svg|
+
+!Uogólniony szereg harmoniczny!
+Wyraża się go wzorem:
+|Assets/Formulas/12.svg|
+Jest rozbieżny przy |Assets/Formulas/13.svg|
+Euler udowodnił, że również szereg odwrotności liczb pierwszych jest rozbieżny.
+
+!Liczby harmoniczne!
+Są to kolejne sumy częściowe szeregu harmonicznego.
+Jest rozbieżny przy |Assets/Formulas/14.svg|
+Były badane w starożytności i pełnią ważną rolę w wielu działach teorii liczb. Potocznie nazywane są szeregiem harmonicznym, są blisko związane z funkcją ζ Riemanna, a także pojawiają się w różnych wyrażeniach licznych funkcji specjalnych.
+Zachodzi dla nich równość:
+|Assets/Formulas/15.svg|
+gdzie 0,5772156649… jest tzw. stałą Eulera. Oznacza to, że szereg harmoniczny rośnie tak szybko jak funkcja logarytm naturalny. Dokładniejsze oszacowanie liczb |Assets/Formulas/16.svg| wyraża się wzorem:
+|Assets/Formulas/17.svg|
+Uogólnione liczby harmoniczne rzędu n z m są zdefiniowane jako:
+|Assets/Formulas/18.svg|
+Jeżeli _m_ liczby jest większe od 1 to istnieje granica przy _n_ zmierzającym do nieskończoności.
+Inne stosowane zapisy to:
+|Assets/Formulas/19.svg|
+
+
+!Szeregi harmoniczne wyższych rzędów!
+Szeregiem harmonicznym rzędu α nazywa się szereg postaci:
+|Assets/Formulas/20.svg|
+Szereg ten jest zbieżny tylko wtedy, gdy _a > 1_.
+Jeżeli dopuści się, by α przyjmowało wartości zespolone i każdej liczbie α, dla której szereg jest zbieżny, przypisze się jego sumę, to tak utworzona funkcja nosi nazwę funkcji dzeta ς Riemanna:
+|Assets/Formulas/21.svg|
+Funkcja ta ma podstawowe znaczenie w teorii liczb. Związana jest z nią słynna i nierozstrzygnięta do dzisiaj hipoteza Riemanna.
+Ponadto naprzemienny szereg harmoniczny jest zbieżny, jednak tylko warunkowo
+|Assets/Formulas/22.svg|
+
+!Losowy szereg harmoniczny!
+Jest to szereg harmoniczny, w którym mianownik liczb może przyjąć wartość +1 lub -1.
+Definiuje się go jako:
+|Assets/Formulas/23.svg|
+gdzie Sn jest niezależną, równo rozdzieloną losową liczbą mogącą przyjąć wartości +1 i -1 z tym samym prawdopodobieństwem 1/2.
+Prawdopodobieństwo zbieżności tego szeregu wynosi 1.
+€
+<div class=ExampleContainer>
+  <canvas id="LosowySzereg" width="450" height="300"></canvas>
+  <button id="LosowySzeregReset">Losuj</button>
+  <p></p>
+</div>
+€
+</div>
+
+<div id="Usage" class="format" style="display:none">
+!Składowa harmoniczna!
+Inaczej alikwot (łac. aliquot, kilka).
+W akustyce jest to część składowa dźwięku muzycznego 
+o przebiegu sinusoidalnym i częstotliwości n=fk, gdzie f jest częstotliwością tonu podstawowego 
+(składowa podstawowa), natomiast k jest liczbą naturalną większą od 1. 
+Długości fal kolejnych składowych harmonicznych są elementami szeregu harmonicznego.
+€
+<div class=ExampleContainer>
+  <canvas id="Struny" width="450" height="300"></canvas>
+  <p>Częstotliwość: </p>
+  <input type="range" id="StringsInput" min="1" max="7" value="3">
+  </div>
+  <p></p>
+€
+W elektrotechnice harmoniczna jest definiowana jako składowa przebiegu o częstotliwości będącej całkowitą krotnością częstotliwości podstawowej. 
+Pierwsza składowa harmoniczna jest sygnałem o częstotliwości równej częstotliwości analizowanego sygnału okresowego, zaś częstotliwości kolejnych składowych harmonicznych są wielokrotnościami tej częstotliwości.
+€<img src="Assets/fig_11_14.gif" height="400" class=DescribedPhoto>€
+Pojawienie się na wyjściu układu wyższych składowych harmonicznych przy pobudzaniu składową podstawową świadczy o nieliniowości tego układu (zniekształcenia nieliniowe). 
+Bardzo często dąży się więc do minimalizacji zawartości wyższych składowych harmonicznych w sygnale wyjściowym.
+€<img src="Assets/transformator_mocy.jpg" height="250" style="display:inline-block;" class=DescribedPhoto>
+<img src="Assets/transformator.jpg" height="250" style="display:inline-block;" class=DescribedPhoto>
+€
+<br>
+`"Klif" ułożony z książek`
+|Assets/BookStacking_650.gif|
+Jak daleko można wysunąć stos książek poza krawędź stołu, tak aby nie spadły one na ziemię?
+Przyjmijmy, że $n$ jest liczbą książek. Odległość na jaką możemy wysunąć pojedynczą książkę będzie się zmniejszać
+ wraz ze wzrostem masy pozostałych książek, które musi utrzymać. Aby każda książka wspierała kolejne, 
+odległość ta musi być równa długości jednej książki pomnożonej przez 
+$n$-tą sumę częściową szeregu harmonicznego.
+|Assets/BooksEquation.gif|
+</div>
+
+<div id="Sources" style="display:none">
+<h2>Autor:</h2>
+<div class="format" >
+Piotr Szlęg
+IV Liceum Ogólnokształcące im. Henryka Sienkiewicza w Częstochowie
+</div>
+<h2>Źródła:</h2>
+<p>[1] W. Krysicki, L. Włodarski "Analiza Matematyczna w Zadaniach 1", Warszawa, Wydawnictwo Naukowe PWN, 2015.</p>
+<p>[2] <a target="_blank" href="http://pl.m.wikipedia.org/wiki/Szereg_harmoniczny">http://pl.m.wikipedia.org/wiki/Szereg_harmoniczny</a>, 09.02.2017r.</p>
+<p>[3] <a target="_blank" href="http://www.youtube.com/watch?v=4k1jegU4Wb4">http://www.youtube.com/watch?v=4k1jegU4Wb4</a>, 09.02.2017r.</p>
+<p>[4] <a target="_blank" href="http://mathworld.wolfram.com/BookStackingProblem.html">http://mathworld.wolfram.com/BookStackingProblem.html</a>, 09.02.2017r.</p>
+<p>[5] <a target="_blank" href="http://www.elcamino.edu/faculty/gfry/191/HarmonicProofs2.pdf">http://www.elcamino.edu/faculty/gfry/191/HarmonicProofs2.pdf</a>, 09.02.2017r.</p>
+<h2>Biblioteki:</h2>
+<div class="format">
+-MathJax
+-Bootstrap
+-JQuery
+-Prototype
+-Tween
+</div>
+<br style="line-height: 1000%;">
+<!--<h2>Narzędzia:</h2>
+<ul>
+<li><a href="http://getbootstrap.com/">Bootstrap</a></li>
+<li><a href="https://jquery.com/">JQuery</a></li>
+<li><a href="http://prototypejs.org/">Prototype</a></li>
+</ul>-->
+</div>
+
+<br>
+<br>
+
+<footer class="text-center">
+<hr>
+  <a class="up-arrow" href="#top" data-toggle="tooltip" title="TO TOP">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+    <br>
+    Do góry.
+  </a>
+</footer>
+
+</div>
+
+<div class="col-sm-2 sidenav">
+</div>
+
+</div>
+
+</div>
+</div>
+
+<script src="Scripts/Formatter.js"></script>
+<script src="Scripts/Subpages.js"></script>
+<script type='text/javascript' src='Scripts/Tween.js'></script>
+<script type='text/javascript' src='Scripts/DataStructures.js'></script>
+<script type='text/javascript' src='Scripts/Input.js'></script>
+<script type='text/javascript' src='Scripts/Providers.js'></script>
+<script type='text/javascript' src='Scripts/GameObject.js'></script>
+<script type='text/javascript' src='Scripts/Chord.js'></script>
+<script type='text/javascript' src='Scripts/Graph.js'></script>
+<script type='text/javascript' src='Scripts/Ruler.js'></script>
+<script type='text/javascript' src='Scripts/ScrollDetector.js'></script>
+<script type='text/javascript' src='Scripts/Game.js'></script>
+<script type='text/javascript' src='Scripts/Numbers.js'></script>
+<script type='text/javascript' src='Scripts/NumbersRandom.js'></script>
+<script type='text/javascript' src='Scripts/StringsExample.js'></script>
+<script type='text/javascript' src='Scripts/VisualDemo.js'></script>
+
+</body>
+</html>
